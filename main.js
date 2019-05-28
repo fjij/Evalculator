@@ -5,7 +5,7 @@ const devtools_enabled = true;
 function createWindow() {
   // Create browser window
   let win = new electron.BrowserWindow({
-    width: 800,
+    width: 1400,
     height: 600,
     webPreferences: {
       nodeIntegration: true
