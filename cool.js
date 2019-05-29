@@ -6,13 +6,50 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-function Button(props) {
-  return React.createElement(
-    "button",
-    { onClick: props.onClick },
-    props.text
-  );
+function getInput() {
+  return "Nyaeh.";
 }
+
+var Button = function (_React$Component) {
+  _inherits(Button, _React$Component);
+
+  function Button(props) {
+    _classCallCheck(this, Button);
+
+    var _this = _possibleConstructorReturn(this, (Button.__proto__ || Object.getPrototypeOf(Button)).call(this, props));
+
+    _this.state = { isToggleOn: false };
+
+    // bind this event (or it doesn't work?)
+    _this.handleClick = _this.handleClick.bind(_this);
+    return _this;
+  }
+
+  _createClass(Button, [{
+    key: "handleClick",
+    value: function handleClick() {
+      this.setState(function (state) {
+        return {
+          isToggleOn: !state.isToggleOn
+        };
+      });
+      console.log(this.state);
+      //this.props.onClick();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return React.createElement(
+        "button",
+        { onClick: this.handleClick },
+        this.props.text + (this.state.isToggleOn ? " ON" : " OFF")
+      );
+    }
+  }]);
+
+  return Button;
+}(React.Component);
+
 function NumberPad(props) {
   return React.createElement(
     "div",
@@ -34,40 +71,19 @@ function NumberPad(props) {
   );
 }
 
-var InputDisplay = function (_React$Component) {
-  _inherits(InputDisplay, _React$Component);
+var InputDisplay = function (_React$Component2) {
+  _inherits(InputDisplay, _React$Component2);
 
   function InputDisplay(props) {
     _classCallCheck(this, InputDisplay);
 
-    var _this = _possibleConstructorReturn(this, (InputDisplay.__proto__ || Object.getPrototypeOf(InputDisplay)).call(this, props));
+    var _this2 = _possibleConstructorReturn(this, (InputDisplay.__proto__ || Object.getPrototypeOf(InputDisplay)).call(this, props));
 
-    _this.state = { input: "no input" };
-    return _this;
+    _this2.state = { input: getInput() };
+    return _this2;
   }
 
   _createClass(InputDisplay, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      this.timerID = setInterval(function () {
-        return _this2.tick();
-      }, 1000);
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      clearInterval(this.timerID);
-    }
-  }, {
-    key: "tick",
-    value: function tick() {
-      this.setState({
-        input: new Date().toLocaleTimeString()
-      });
-    }
-  }, {
     key: "render",
     value: function render() {
       return React.createElement(
@@ -81,38 +97,14 @@ var InputDisplay = function (_React$Component) {
   return InputDisplay;
 }(React.Component);
 
-var ClassComponent = function (_React$Component2) {
-  _inherits(ClassComponent, _React$Component2);
-
-  function ClassComponent() {
-    _classCallCheck(this, ClassComponent);
-
-    return _possibleConstructorReturn(this, (ClassComponent.__proto__ || Object.getPrototypeOf(ClassComponent)).apply(this, arguments));
-  }
-
-  _createClass(ClassComponent, [{
-    key: "render",
-    value: function render() {
-      return React.createElement(
-        "h3",
-        null,
-        "hiya, ",
-        this.props.name
-      );
-    }
-  }]);
-
-  return ClassComponent;
-}(React.Component);
-
-function testOutput() {
-  console.log("Yeet.");
+function App() {
+  return React.createElement(
+    "div",
+    null,
+    React.createElement(InputDisplay, null),
+    React.createElement(NumberPad, null)
+  );
 }
-var name = "coolio";
-var element = React.createElement(
-  "div",
-  null,
-  React.createElement(InputDisplay, null),
-  React.createElement(NumberPad, null)
-);
+
+var element = React.createElement(App, null);
 ReactDOM.render(element, document.getElementById('root'));

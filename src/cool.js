@@ -1,6 +1,26 @@
+function getInput() {
+  return "Nyaeh.";
+}
 
-function Button(props){
-  return <button onClick={props.onClick}>{props.text}</button>;
+
+class Button extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {isToggleOn: false};
+
+    // bind this event (or it doesn't work?)
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick(){
+    this.setState(state => ({
+      isToggleOn: !state.isToggleOn
+    }));
+    console.log(this.state);
+    //this.props.onClick();
+  }
+  render() {
+    return <button onClick={this.handleClick}>{this.props.text + (this.state.isToggleOn?" ON":" OFF")}</button>;
+  }
 }
 function NumberPad(props){
   return (
@@ -26,45 +46,23 @@ class InputDisplay extends React.Component {
 
   constructor(props){
     super(props);
-    this.state = {input: "no input"};
+    this.state = {input: getInput()};
   }
-
-  componentDidMount() {
-    this.timerID = setInterval(
-      () => this.tick(), 1000
-    );
-  }
-
-  componentWillUnmount(){
-    clearInterval(this.timerID);
-  }
-
-  tick(){
-    this.setState({
-      input: new Date().toLocaleTimeString()
-    })
-  }
-
   render(){
     return <h2>{this.state.input}</h2>;
   }
 }
 
-class ClassComponent extends React.Component {
-  render(){
-    return <h3>hiya, {this.props.name}</h3>;
-  }
+function App() {
+  return (
+    <div>
+      <InputDisplay />
+      <NumberPad />
+    </div>
+  )
 }
-function testOutput () {
-  console.log("Yeet.");
-}
-const name = "coolio";
-const element = (
-  <div>
-    <InputDisplay />
-    <NumberPad />
-  </div>
-);
+
+const element = <App />;
 ReactDOM.render(
   element,
   document.getElementById('root')
