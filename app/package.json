@@ -15,7 +15,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "electron": "electron ."
+    "electron": "electron .",
+    "electron-packager-build-win32-x64": "electron-packager ./ \"evalculator\" --platform=\"win32\" --arch=\"x64\""
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -33,6 +34,7 @@
     ]
   },
   "devDependencies": {
-    "electron": "^5.0.4"
+    "electron": "^5.0.4",
+    "electron-packager": "^14.0.0"
   }
 }
