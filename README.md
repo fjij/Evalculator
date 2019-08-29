@@ -1,5 +1,5 @@
 # evalculator
-It's a calculator that uses javascript's built in eval() function.
+It's a calculator that uses javascript's built in eval() function. The project runs as a desktop program using electron/react + node.js.
 
 ## Download
 Click ["Releases"](https://github.com/fjij/evalculator/releases) to download Windows versions of this project. Otherwise follow the build instructions down below.
