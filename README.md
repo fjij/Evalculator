@@ -1,10 +1,10 @@
-# Evalculator
-It's just a calculator. That uses javascript's built in eval() function. That's it.
+# evalculator
+It's a calculator that uses javascript's built in eval() function.
 
-# Download
-Uh.
+## Download
+Click ["Releases"](https://github.com/fjij/evalculator/releases) to download Windows versions of this project. Otherwise follow the build instructions down below.
 
-# Build instructions
+## Build instructions
 Go to app directory:
 `cd app`
 Install all npm packages and dependencies:
